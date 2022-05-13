@@ -4,8 +4,9 @@
 /* import { Contador } from "./components/Contador"; */
 /* import { ContadorHook } from "./components/ContadorHook"; */
 /* import { Login } from "./components/Login"; */
+/* import { Usuarios } from "./components/Usuarios"; */
 
-import { Usuarios } from "./components/Usuarios";
+import { Form } from "./components/Form";
 
 const App = () => {
   return (
@@ -20,7 +21,8 @@ const App = () => {
     {/* <Contador/> */}
     {/* <ContadorHook/> */}
     {/* <Login/> */}
-    <Usuarios/>
+    {/* <Usuarios/> */}
+    <Form/>
     </div>
   )
 }
