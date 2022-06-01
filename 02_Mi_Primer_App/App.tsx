@@ -2,7 +2,7 @@ import React from 'react';
 import {SafeAreaView} from 'react-native';
 /* import {BoxObjectModelScreen} from './src/Screens/BoxObjectModelScreen'; */
 /* import {DimensionsScreen} from './src/Screens/DimensionsScreen'; */
-import { PositionRelativeScreen } from './src/Screens/PositionRelativeScreen';
+import { PositionScreen } from './src/Screens/PositionScreen';
 /* import {CounterScreen} from './src/Screens/CounterScreen'; */
 
 export const App = () => (
@@ -10,6 +10,6 @@ export const App = () => (
     {/* <CounterScreen /> */}
     {/* <BoxObjectModelScreen /> */}
     {/* <DimensionsScreen /> */}
-    <PositionRelativeScreen/>
+    <PositionScreen/>
   </SafeAreaView>
 );
