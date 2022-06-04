@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#28C4D9',
-    flexDirection: 'row', //column es por defecto
+    //flexDirection: 'row', //column es por defecto
+    //justifyContent: 'space-between',
   },
   box1: {
     //flex: 1,
