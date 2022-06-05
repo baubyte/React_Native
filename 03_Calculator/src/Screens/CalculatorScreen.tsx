@@ -23,7 +23,38 @@ export const CalculatorScreen = () => {
    * @param textNumber
    */
   const numberConstruct = (textNumber: string) => {
-    setNumber(number + textNumber);
+    //Si ya existe una coma decimal
+    if (number.includes(',') && textNumber === ',') {
+      return;
+    }
+    //Si el numero comienza con 0
+    if (number.startsWith('0') || number.startsWith('-0')) {
+      //Si es la coma decimal
+      if (textNumber === ',') {
+        setNumber(`${number}${textNumber}`);
+        //Si es otro 0 y hay una coma decimal
+      } else if (textNumber === '0' && number.includes(',')) {
+        setNumber(`${number}${textNumber}`);
+        //Si es diferente de 0 y no tiene una coma
+      } else if (textNumber !== '0' && !number.includes(',')) {
+        setNumber(`${textNumber}`);
+        //Evitar el 000.000
+      } else if (textNumber === '0' && !number.includes(',')) {
+        setNumber(`${number}`);
+      } else {
+        setNumber(`${number}${textNumber}`);
+      }
+    } else {
+      setNumber(`${number}${textNumber}`);
+    }
+  };
+  const positiveNegative = () => {
+    //Si el numero actual tiene es negativo
+    if (number.includes('-')) {
+      setNumber(number.replace('-', ''));
+    } else {
+      setNumber(`-${number}`);
+    }
   };
   return (
     <View style={styles.calculatorContainer}>
@@ -39,8 +70,18 @@ export const CalculatorScreen = () => {
       {/* Fila de Botones */}
       <View style={styles.row}>
         <ButtonCalc text="C" color="#9B9B9B" textColor="black" action={clear} />
-        <ButtonCalc text="+/-" color="#9B9B9B" textColor="black" />
-        <ButtonCalc text="del" color="#9B9B9B" textColor="black" />
+        <ButtonCalc
+          text="+/-"
+          color="#9B9B9B"
+          textColor="black"
+          action={positiveNegative}
+        />
+        <ButtonCalc
+          text="del"
+          color="#9B9B9B"
+          textColor="black"
+          action={clear}
+        />
         <ButtonCalc text="/" color="#FF9427" action={clear} />
       </View>
       {/* Fila de Botones */}
