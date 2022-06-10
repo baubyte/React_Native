@@ -134,9 +134,34 @@ export const CalculatorScreen = () => {
     changeNumberForPrevious();
     lastOperation.current = Operators.subtract;
   };
+  /**
+   * Función para realizar la operación aritmética
+   */
+  const calculate = () => {
+    const numberCurrent = Number(number.replace(',', '.'));
+    const numberPrevious = Number(previousNumber.replace(',', '.'));
+
+    switch (lastOperation.current) {
+      case Operators.add:
+        setNumber(`${numberCurrent + numberPrevious}`.replace('.', ','));
+        break;
+      case Operators.subtract:
+        setNumber(`${numberPrevious - numberCurrent}`.replace('.', ','));
+        break;
+      case Operators.multiply:
+        setNumber(`${numberCurrent * numberPrevious}`.replace('.', ','));
+        break;
+      case Operators.divide:
+        setNumber(`${numberPrevious / numberCurrent}`.replace('.', ','));
+        break;
+    }
+    setPreviousNumber('0');
+  };
   return (
     <View style={styles.calculatorContainer}>
-      <Text style={styles.littleResult}>{previousNumber}</Text>
+      {previousNumber !== '0' && (
+        <Text style={styles.littleResult}>{previousNumber}</Text>
+      )}
       <Text
         style={styles.result}
         //Mostrar en una linea
@@ -187,7 +212,7 @@ export const CalculatorScreen = () => {
       <View style={styles.row}>
         <ButtonCalc text="0" action={numberConstruct} buttonWidth />
         <ButtonCalc text="," action={numberConstruct} />
-        <ButtonCalc text="=" color="#FF9427" action={clear} />
+        <ButtonCalc text="=" color="#FF9427" action={calculate} />
       </View>
     </View>
   );
