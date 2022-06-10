@@ -48,12 +48,33 @@ export const CalculatorScreen = () => {
       setNumber(`${number}${textNumber}`);
     }
   };
+  /**
+   * Función Botón +/-
+   */
   const positiveNegative = () => {
     //Si el numero actual tiene es negativo
     if (number.includes('-')) {
       setNumber(number.replace('-', ''));
     } else {
       setNumber(`-${number}`);
+    }
+  };
+  /**
+   * Función Botón DEL
+   */
+  const btnDelete = () => {
+    let negative = '';
+    let tempNumber = number;
+    //Para saber si era negativo
+    if (number.includes('-')) {
+      negative = '-';
+      tempNumber = number.substr(1);
+    }
+    //Si hay mas de un carácter le saco el ultimo
+    if (tempNumber.length > 1) {
+      setNumber(`${negative}${tempNumber.slice(0, -1)}`);
+    } else {
+      setNumber('0');
     }
   };
   return (
@@ -80,7 +101,7 @@ export const CalculatorScreen = () => {
           text="del"
           color="#9B9B9B"
           textColor="black"
-          action={clear}
+          action={btnDelete}
         />
         <ButtonCalc text="/" color="#FF9427" action={clear} />
       </View>
