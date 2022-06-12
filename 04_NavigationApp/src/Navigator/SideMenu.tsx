@@ -14,8 +14,18 @@ import {
   View,
 } from 'react-native';
 import {styles} from '../Theme/appTheme';
+/* import {createStackNavigator} from '@react-navigation/stack'; */
 
 const Drawer = createDrawerNavigator();
+/* const Stack = createStackNavigator();
+
+const SettingsStackScreen = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+    </Stack.Navigator>
+  );
+}; */
 
 export const SideMenu = () => {
   const {width} = useWindowDimensions();
