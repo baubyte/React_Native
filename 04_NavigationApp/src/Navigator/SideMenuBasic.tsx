@@ -9,7 +9,8 @@ const Drawer = createDrawerNavigator();
 export const SideMenuBasic = () => {
   const {width} = useWindowDimensions();
   return (
-    <Drawer.Navigator  screenOptions={{
+    <Drawer.Navigator
+      screenOptions={{
         drawerType: width >= 1200 ? 'permanent' : 'front',
         drawerPosition: 'left',
       }}>
