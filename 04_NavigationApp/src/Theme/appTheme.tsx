@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   subTitle: {
+    marginVertical: 20,
     fontSize: 20,
     marginBottom: 10,
   },
