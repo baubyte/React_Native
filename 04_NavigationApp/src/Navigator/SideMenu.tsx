@@ -38,8 +38,16 @@ export const SideMenu = () => {
         drawerPosition: 'left',
       }}>
       {/* <Drawer.Screen name="StackNavigator" component={StackNavigator} /> */}
-      <Drawer.Screen name="Tabs" component={Tabs} />
-      <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
+      <Drawer.Screen
+        name="Tabs"
+        component={Tabs}
+        options={{headerTitle: 'Navegación'}}
+      />
+      <Drawer.Screen
+        name="SettingsScreen"
+        component={SettingsScreen}
+        options={{headerTitle: 'Ajustes'}}
+      />
     </Drawer.Navigator>
   );
 };
