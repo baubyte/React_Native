@@ -3,14 +3,14 @@ import React from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Tab1Screen} from '../Screens/Tab1Screen';
-import {Tab2Screen} from '../Screens/Tab2Screen';
 import {StackNavigator} from './StackNavigator';
 import {colors} from '../Theme/appTheme';
 import {Platform, Text} from 'react-native';
+import {TopTabNavigator} from './TopTabNavigator';
 
 export type RootTabParams = {
   Tab1Screen: undefined;
-  Tab2Screen: undefined;
+  TopTabNavigator: undefined;
   StackNavigator: undefined;
 };
 //Componente que rederiza de manera condicional
@@ -19,7 +19,7 @@ export const Tabs = () => {
 };
 
 //Botones Android
-const BottomTabAndroid = createMaterialBottomTabNavigator();
+const BottomTabAndroid = createMaterialBottomTabNavigator<RootTabParams>();
 /**
  * Tabs para Android
  * @returns React
@@ -45,7 +45,7 @@ const TabsAndroid = () => {
             case 'Tab1Screen':
               iconName = 'T1';
               break;
-            case 'Tab2Screen':
+            case 'TopTabNavigator':
               iconName = 'T2';
               break;
             case 'StackNavigator':
@@ -63,8 +63,8 @@ const TabsAndroid = () => {
         }}
       />
       <BottomTabAndroid.Screen
-        name="Tab2Screen"
-        component={Tab2Screen}
+        name="TopTabNavigator"
+        component={TopTabNavigator}
         options={{
           title: 'Tab 2',
         }}
@@ -106,8 +106,8 @@ const TabsIOS = () => {
             case 'Tab1Screen':
               iconName = 'T1';
               break;
-            case 'Tab2Screen':
-              iconName = 'T2';
+            case 'TopTabNavigator':
+              iconName = 'TT';
               break;
             case 'StackNavigator':
               iconName = 'ST';
@@ -134,8 +134,8 @@ const TabsIOS = () => {
         }}
       />
       <BottomTabIOS.Screen
-        name="Tab2Screen"
-        component={Tab2Screen}
+        name="TopTabNavigator"
+        component={TopTabNavigator}
         options={{
           title: 'Tab 2',
           headerShown: false,
