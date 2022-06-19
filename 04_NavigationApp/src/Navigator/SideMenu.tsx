@@ -4,8 +4,6 @@ import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
-import {StackNavigator} from './StackNavigator';
-import {SettingsScreen} from '../Screens/SettingsScreen';
 import {
   Image,
   Text,
@@ -14,6 +12,9 @@ import {
   View,
 } from 'react-native';
 import {styles} from '../Theme/appTheme';
+/* import {StackNavigator} from './StackNavigator'; */
+import {SettingsScreen} from '../Screens/SettingsScreen';
+import {Tabs} from './Tabs';
 /* import {createStackNavigator} from '@react-navigation/stack'; */
 
 const Drawer = createDrawerNavigator();
@@ -36,7 +37,8 @@ export const SideMenu = () => {
         drawerType: width >= 1200 ? 'permanent' : 'front',
         drawerPosition: 'left',
       }}>
-      <Drawer.Screen name="StackNavigator" component={StackNavigator} />
+      {/* <Drawer.Screen name="StackNavigator" component={StackNavigator} /> */}
+      <Drawer.Screen name="Tabs" component={Tabs} />
       <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
     </Drawer.Navigator>
   );
@@ -57,7 +59,7 @@ const InternalMenu = ({navigation}: DrawerContentComponentProps) => {
       <View style={styles.menuContainer}>
         <TouchableOpacity
           style={styles.menuButton}
-          onPress={() => navigation.navigate('StackNavigator')}>
+          onPress={() => navigation.navigate('Tabs')}>
           <Text style={styles.menuText}>Navegación</Text>
         </TouchableOpacity>
         <TouchableOpacity
