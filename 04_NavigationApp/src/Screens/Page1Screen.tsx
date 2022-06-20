@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import {DrawerScreenProps} from '@react-navigation/drawer';
 /* import {StackScreenProps} from '@react-navigation/stack'; */
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {Button, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {colors, styles} from '../Theme/appTheme';
