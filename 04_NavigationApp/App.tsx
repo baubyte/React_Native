@@ -17,7 +17,11 @@ const App = () => (
     </AppState>
   </NavigationContainer>
 );
-
+/**
+ * Estado de la Aplicacion
+ * @param
+ * @returns JSX
+ */
 const AppState = ({children}: any) => {
   return (
     <AuthProvider>
