@@ -11,6 +11,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {styles} from '../Theme/appTheme';
 /* import {StackNavigator} from './StackNavigator'; */
 import {SettingsScreen} from '../Screens/SettingsScreen';
@@ -34,6 +35,7 @@ export const SideMenu = () => {
     <Drawer.Navigator
       drawerContent={props => <InternalMenu {...props} />}
       screenOptions={{
+        headerShown: false, //Ocultamos el header sel sidebar agregamos el botón en Page1Screen
         drawerType: width >= 1200 ? 'permanent' : 'front',
         drawerPosition: 'left',
         drawerStyle: {
@@ -72,11 +74,13 @@ const InternalMenu = ({navigation}: DrawerContentComponentProps) => {
         <TouchableOpacity
           style={styles.menuButton}
           onPress={() => navigation.navigate('Tabs')}>
+          <Icon name="compass-outline" size={23} color="black" />
           <Text style={styles.menuText}>Navegación</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.menuButton}
           onPress={() => navigation.navigate('SettingsScreen')}>
+          <Icon name="cog-outline" size={23} color="black" />
           <Text style={styles.menuText}>Ajustes</Text>
         </TouchableOpacity>
       </View>

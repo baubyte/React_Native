@@ -5,8 +5,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Tab1Screen} from '../Screens/Tab1Screen';
 import {StackNavigator} from './StackNavigator';
 import {colors} from '../Theme/appTheme';
-import {Platform, Text} from 'react-native';
+import {Platform} from 'react-native';
 import {TopTabNavigator} from './TopTabNavigator';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export type RootTabParams = {
   Tab1Screen: undefined;
@@ -43,16 +44,16 @@ const TabsAndroid = () => {
           let iconName: string = '';
           switch (route.name) {
             case 'Tab1Screen':
-              iconName = 'T1';
+              iconName = 'bandage-outline';
               break;
             case 'TopTabNavigator':
-              iconName = 'T2';
+              iconName = 'basketball-outline';
               break;
             case 'StackNavigator':
-              iconName = 'ST';
+              iconName = 'bookmarks-outline';
               break;
           }
-          return <Text style={{color}}>{iconName}</Text>;
+          return <Icon name={iconName} size={20} color={color} />;
         },
       })}>
       <BottomTabAndroid.Screen
@@ -105,16 +106,16 @@ const TabsIOS = () => {
           let iconName: string = '';
           switch (route.name) {
             case 'Tab1Screen':
-              iconName = 'T1';
+              iconName = 'bandage-outline';
               break;
             case 'TopTabNavigator':
-              iconName = 'TT';
+              iconName = 'basketball-outline';
               break;
             case 'StackNavigator':
-              iconName = 'ST';
+              iconName = 'bookmarks-outline';
               break;
           }
-          return <Text style={{color}}>{iconName}</Text>;
+          return <Icon name={iconName} size={20} color={color} />;
         },
       })}>
       {/* <BottomTabIOS.Screen
