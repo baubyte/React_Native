@@ -33,7 +33,7 @@ const TabsAndroid = () => {
         tabBarActiveTintColor: colors.primary,
         tabBarStyle: {
           borderTopColor: colors.primary,
-          borderTopWidth: 0,
+          shadowColor: 'transparent',
           elevation: 0,
         },
         tabBarLabelStyle: {

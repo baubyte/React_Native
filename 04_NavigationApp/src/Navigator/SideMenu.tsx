@@ -36,6 +36,10 @@ export const SideMenu = () => {
       screenOptions={{
         drawerType: width >= 1200 ? 'permanent' : 'front',
         drawerPosition: 'left',
+        drawerStyle: {
+          shadowColor: 'transparent',
+          elevation: 0,
+        },
       }}>
       {/* <Drawer.Screen name="StackNavigator" component={StackNavigator} /> */}
       <Drawer.Screen
