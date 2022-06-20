@@ -11,7 +11,7 @@ export interface AuthState {
 /**
  * Estado Inicial
  */
-export const AuthInitialState: AuthState = {
+export const authInitialState: AuthState = {
   isLoggedIn: false,
   userName: undefined,
   favoriteIcon: undefined,
@@ -34,7 +34,7 @@ export const AuthProvider = ({children}: {children: JSX.Element[]}) => {
   return (
     <AuthContext.Provider
       value={{
-        authState: AuthInitialState,
+        authState: authInitialState,
         signIn: () => {},
       }}>
       {/** Mostramos los componentes hijos*/}
