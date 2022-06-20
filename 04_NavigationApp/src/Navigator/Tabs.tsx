@@ -100,6 +100,7 @@ const TabsIOS = () => {
         tabBarLabelStyle: {
           fontSize: 15,
         },
+        headerShown: false,
         tabBarIcon: ({color}) => {
           let iconName: string = '';
           switch (route.name) {
@@ -122,7 +123,6 @@ const TabsIOS = () => {
         options={{
           title: 'Tab 1',
           tabBarIcon: props => <Text style={{color: props.color}}>T1</Text>,
-          headerShown: false,
         }}
       /> */}
       <BottomTabIOS.Screen
@@ -130,7 +130,6 @@ const TabsIOS = () => {
         component={Tab1Screen}
         options={{
           title: 'Tab 1',
-          headerShown: false,
         }}
       />
       <BottomTabIOS.Screen
@@ -138,7 +137,6 @@ const TabsIOS = () => {
         component={TopTabNavigator}
         options={{
           title: 'Tab 2',
-          headerShown: false,
         }}
       />
       <BottomTabIOS.Screen
