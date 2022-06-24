@@ -3,7 +3,10 @@ import {AuthState} from './AuthContext';
 /**
  * Tipos de Acciones de AuthAction
  */
-type AuthAction = {type: 'signIn'} | {type: 'changeFavIcon'; payload: string};
+type AuthAction =
+  | {type: 'signIn'}
+  | {type: 'changeFavIcon'; payload: string}
+  | {type: 'logout'};
 /**
  *
  * @param state AuthState
@@ -19,6 +22,13 @@ export const authReducer = (
       return {...state, isLoggedIn: true, userName: 'not-username-yet'};
     case 'changeFavIcon':
       return {...state, favoriteIcon: action.payload};
+    case 'logout':
+      return {
+        ...state,
+        isLoggedIn: false,
+        userName: undefined,
+        favoriteIcon: undefined,
+      };
     default:
       return state;
   }
