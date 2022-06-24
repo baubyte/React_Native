@@ -1,4 +1,5 @@
-import React, {createContext} from 'react';
+import React, {createContext, useReducer} from 'react';
+import {authReducer} from './authReducer';
 
 /**
  * Definir que información tendrá
@@ -30,12 +31,22 @@ export const AuthContext = createContext({} as AuthContextProps);
 /**
  * Proveedor del Estado
  */
-export const AuthProvider = ({children}: {children: JSX.Element[]}) => {
+export const AuthProvider = ({
+  children,
+}: {
+  children: JSX.Element[] | JSX.Element;
+}) => {
+  const [authState, dispatch] = useReducer(authReducer, authInitialState);
+  /**
+   * Inicio de sesión
+   * @returns authState
+   */
+  const signIn = () => dispatch({type: 'signIn'});
   return (
     <AuthContext.Provider
       value={{
-        authState: authInitialState,
-        signIn: () => {},
+        authState,
+        signIn,
       }}>
       {/** Mostramos los componentes hijos*/}
       {children}
