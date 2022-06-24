@@ -22,7 +22,7 @@ const App = () => (
  * @param
  * @returns JSX
  */
-const AppState = ({children}: any) => {
+const AppState = ({children}: {children: JSX.Element[] | JSX.Element}) => {
   return (
     <AuthProvider>
       {/** Mostramos los componentes hijos*/}
