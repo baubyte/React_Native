@@ -28,6 +28,7 @@ export const HomeScreen = () => {
             renderItem={({item}: any) => <MoviePoster movie={item} />}
             sliderWidth={windowWidth}
             itemWidth={300}
+            inactiveSlideOpacity={0.7}
           />
         </View>
         {/* Películas Populares */}

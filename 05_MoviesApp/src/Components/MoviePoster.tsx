@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.9,
     shadowRadius: 7,
-    elevation: 9,
+    elevation: 10,
   },
   image: {
     flex: 1,
