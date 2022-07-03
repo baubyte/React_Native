@@ -25,5 +25,16 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
   },
-  carouselContainer: {height: 440},
+  carouselContainer: {
+    height: 440,
+  },
+  flatListContainer: {
+    height: 260,
+    backgroundColor: 'red',
+  },
+  titleMoviesPopular: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginLeft: 10,
+  },
 });
