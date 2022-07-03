@@ -8,7 +8,7 @@ import {useMovies} from '../Hooks/useMovies';
 import {styles} from '../Theme/appTheme';
 
 export const HomeScreen = () => {
-  const {moviesInCinema, isLoading} = useMovies();
+  const {nowPlaying, popular, topRated, upcoming, isLoading} = useMovies();
   const {top: marginTop} = useSafeAreaInsets();
   const {width: windowWidth} = Dimensions.get('window');
   if (isLoading) {
@@ -24,7 +24,7 @@ export const HomeScreen = () => {
         {/* Carrusel películas en cine */}
         <View style={styles.carouselContainer}>
           <Carousel
-            data={moviesInCinema}
+            data={nowPlaying}
             renderItem={({item}: any) => <MoviePoster movie={item} />}
             sliderWidth={windowWidth}
             itemWidth={300}
@@ -32,7 +32,11 @@ export const HomeScreen = () => {
           />
         </View>
         {/* Películas Populares */}
-        <HorizontalSlider title="Popular" movies={moviesInCinema} />
+        <HorizontalSlider title="Populares" movies={popular} />
+        {/* Películas Mejor Calificadas" */}
+        <HorizontalSlider title="Mejor Calificadas" movies={topRated} />
+        {/* Películas Próximamente" */}
+        <HorizontalSlider title="Próximamente" movies={upcoming} />
       </View>
     </ScrollView>
   );
