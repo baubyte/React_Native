@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react';
 import movieDB from '../Api/movieDB';
-import {MovieDBNowPlaying, Movies} from '../Interfaces/movieInterface';
+import {MovieDBNowPlaying, Movie} from '../Interfaces/movieInterface';
 
 export const useMovies = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [moviesInCinema, setMoviesInCinema] = useState<Movies[]>([]);
+  const [moviesInCinema, setMoviesInCinema] = useState<Movie[]>([]);
   /**
    * Obtiene las películas en cine
    */
