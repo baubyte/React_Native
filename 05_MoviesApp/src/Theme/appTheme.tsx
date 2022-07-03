@@ -25,4 +25,5 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
   },
+  carouselContainer: {height: 440},
 });
