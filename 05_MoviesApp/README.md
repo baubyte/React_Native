@@ -1,20 +1,20 @@
 ### Error y Posible Solución
 [ISSUES GITHUB](https://github.com/software-mansion/react-native-screens/issues/1369)
 1.  Cambiar
-    In my android/build.gradle file i change this:
+    android/build.gradle file i change this:
 
-buildscript {
-    ext {
-        // ...
-        kotlin_version = '1.6.10' // <- add this line
-    }
+    buildscript {
+        ext {
+            // ...
+            kotlin_version = '1.6.10' // <- add this line
+        }
 
-    dependencies {
-        // ...
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" // <- add this line
-        // ...
+        dependencies {
+            // ...
+            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" // <- add this line
+            // ...
+        }
     }
-}
 
 
 ### Error Carrusel 
