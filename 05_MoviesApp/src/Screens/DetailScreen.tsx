@@ -6,9 +6,11 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import {RootStackParams} from '../Navigation/Navigation';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const screenHeight = Dimensions.get('screen').height;
 interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> {}
@@ -17,7 +19,6 @@ export const DetailScreen = ({route}: Props) => {
   const movie = route.params;
   const uri = `https://image.tmdb.org/t/p/original${movie.poster_path}`;
   
-
   return (
     <ScrollView>
       <View style={styles.imageContainer}>
@@ -28,6 +29,12 @@ export const DetailScreen = ({route}: Props) => {
       <View style={styles.marginContainer}>
         <Text style={styles.subTitle}>{movie.original_title}</Text>
         <Text style={styles.title}>{movie.title}</Text>
+      </View>
+      {/* Botón para volver */}
+      <View style={styles.backButton}>
+        <TouchableOpacity>
+          <Icon color="white" name="arrow-back-outline" size={60} />
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -67,5 +74,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  backButton: {
+    position: 'absolute',
+    zIndex: 999,
+    elevation: 9,
+    top: 30,
+    left: 5,
   },
 });
