@@ -14,7 +14,7 @@ export const MoviePoster = ({movie, height = 420, width = 300}: Props) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
-      activeOpacity={0.8}
+      activeOpacity={0.7}
       onPress={() => navigation.navigate('DetailScreen', movie)}
       style={{
         ...styles.cardImage,
@@ -29,7 +29,9 @@ export const MoviePoster = ({movie, height = 420, width = 300}: Props) => {
 };
 const styles = StyleSheet.create({
   cardImage: {
-    marginHorizontal: 8,
+    marginHorizontal: 2,
+    paddingBottom: 20,
+    paddingHorizontal: 7,
   },
   imageContainer: {
     flex: 1,
@@ -39,7 +41,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 10,
     },
-    shadowOpacity: 0.9,
+    shadowOpacity: 0.24,
     shadowRadius: 7,
     elevation: 10,
   },
