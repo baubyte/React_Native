@@ -10,11 +10,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import currencyFormatter from 'currency-formatter';
 import {RootStackParams} from '../Navigation/Navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useMovieDetails} from '../Hooks/useMovieDetails';
 import {styles} from '../Theme/appTheme';
+import {MovieDetails} from '../Components/MovieDetails';
 
 const screenHeight = Dimensions.get('screen').height;
 interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> {}
@@ -23,13 +23,6 @@ export const DetailScreen = ({route}: Props) => {
   const movie = route.params;
   const uri = `https://image.tmdb.org/t/p/original${movie.poster_path}`;
   const {isLoading, cast, movieFull} = useMovieDetails(movie.id);
-  if (isLoading) {
-    return (
-      <View style={styles.activityIndicator}>
-        <ActivityIndicator color="red" size={100} />
-      </View>
-    );
-  }
   return (
     <ScrollView>
       <View style={detailStyles.imageContainer}>
@@ -40,19 +33,16 @@ export const DetailScreen = ({route}: Props) => {
       <View style={detailStyles.marginContainer}>
         <Text style={detailStyles.subTitle}>{movie.original_title}</Text>
         <Text style={detailStyles.title}>{movie.title}</Text>
-        {/* Historia */}
-        <Text style={detailStyles.titleDetails}>Historia</Text>
-        <Text style={detailStyles.history}>{movieFull!.overview}</Text>
-        {/* Presupuesto */}
-        <Text style={detailStyles.titleDetails}>Presupuesto</Text>
-        <Text style={detailStyles.budget}>
-          {currencyFormatter.format(movieFull!.budget, {
-            locale: 'es-AR',
-            code: 'USD',
-            format: '%s %v',
-          })}
-        </Text>
       </View>
+      {isLoading ? (
+        <ActivityIndicator
+          size={35}
+          color="red"
+          style={styles.activityIndicator}
+        />
+      ) : (
+        <MovieDetails movieFull={movieFull!} cast={cast} />
+      )}
 
       {/* Botón para volver */}
       <View style={detailStyles.backButton}>
@@ -106,11 +96,4 @@ const detailStyles = StyleSheet.create({
     top: 30,
     left: 5,
   },
-  titleDetails: {
-    fontSize: 23,
-    marginTop: 10,
-    fontWeight: 'bold',
-  },
-  history: {fontSize: 16},
-  budget: {fontSize: 18},
 });
