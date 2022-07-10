@@ -19,7 +19,7 @@ import {MovieDetails} from '../Components/MovieDetails';
 const screenHeight = Dimensions.get('screen').height;
 interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> {}
 
-export const DetailScreen = ({route}: Props) => {
+export const DetailScreen = ({route, navigation}: Props) => {
   const movie = route.params;
   const uri = `https://image.tmdb.org/t/p/original${movie.poster_path}`;
   const {isLoading, cast, movieFull} = useMovieDetails(movie.id);
@@ -46,7 +46,7 @@ export const DetailScreen = ({route}: Props) => {
 
       {/* Botón para volver */}
       <View style={detailStyles.backButton}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.pop()}>
           <Icon color="white" name="arrow-back-outline" size={60} />
         </TouchableOpacity>
       </View>
