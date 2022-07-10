@@ -1,16 +1,27 @@
 import React from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import currencyFormatter from 'currency-formatter';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Cast} from '../Interfaces/creditsInterface';
 import {MovieFull} from '../Interfaces/movieInterface';
 import {CastItem} from './CastItem';
+import {useSimilarMovies} from '../Hooks/useSimilarMovies';
+import {HorizontalSlider} from './HorizontalSlider';
+import {styles} from '../Theme/appTheme';
 
 interface Props {
   movieFull: MovieFull;
   cast: Cast[];
 }
 export const MovieDetails = ({movieFull, cast}: Props) => {
+  const {isLoading, similarMovies} = useSimilarMovies(movieFull.id);
+
   return (
     <>
       {/* Detalles */}
@@ -47,6 +58,15 @@ export const MovieDetails = ({movieFull, cast}: Props) => {
           style={movieDetailsStyles.listActors}
         />
       </View>
+      {isLoading ? (
+        <ActivityIndicator
+          size={35}
+          color="red"
+          style={styles.activityIndicator}
+        />
+      ) : (
+        <HorizontalSlider title="Películas Similares" movies={similarMovies} />
+      )}
     </>
   );
 };
