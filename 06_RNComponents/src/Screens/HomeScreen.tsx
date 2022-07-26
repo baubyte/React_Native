@@ -34,7 +34,7 @@ export const HomeScreen = () => {
     <View style={(homeStyles.container, styles.globalMargin)}>
       <FlatList
         data={menuItems}
-        renderItem={({item}) => <FlatListMenuItem menuItem={item}/>}
+        renderItem={({item}) => <FlatListMenuItem menuItem={item} />}
         keyExtractor={item => item.component}
         ListHeaderComponent={renderListHeader}
         ItemSeparatorComponent={ItemSeparator}
