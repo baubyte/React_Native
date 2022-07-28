@@ -4,6 +4,7 @@ import {HomeScreen} from '../Screens/HomeScreen';
 import {Animation101Screen} from '../Screens/Animation101Screen';
 import {Animation102Screen} from '../Screens/Animation102Screen';
 import {RootStackParams} from './types';
+import {SwitchScreen} from '../Screens/SwitchScreen';
 
 const Stack = createStackNavigator<RootStackParams>();
 
@@ -19,6 +20,7 @@ export const Navigation = () => {
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="Animation101Screen" component={Animation101Screen} />
       <Stack.Screen name="Animation102Screen" component={Animation102Screen} />
+      <Stack.Screen name="SwitchScreen" component={SwitchScreen} />
     </Stack.Navigator>
   );
 };
