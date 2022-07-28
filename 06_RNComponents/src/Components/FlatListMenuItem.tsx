@@ -13,7 +13,7 @@ export const FlatListMenuItem = ({menuItem}: Props) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      onPress={() => navigation.navigate(menuItem.component)}>
+      onPress={() => navigation.navigate({key: menuItem.component})}>
       <View style={styles.container}>
         <Icon name={menuItem.iconName} color="gray" size={24} />
         <Text style={styles.itemText}>{menuItem.name}</Text>
