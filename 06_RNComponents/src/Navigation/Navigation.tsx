@@ -7,6 +7,7 @@ import {RootStackParams} from './types';
 import {SwitchScreen} from '../Screens/SwitchScreen';
 import {AlertScreen} from '../Screens/AlertScreen';
 import {TextInputScreen} from '../Screens/TextInputScreen';
+import {PullToRefreshScreen} from '../Screens/PullToRefreshScreen';
 
 const Stack = createStackNavigator<RootStackParams>();
 
@@ -25,6 +26,10 @@ export const Navigation = () => {
       <Stack.Screen name="SwitchScreen" component={SwitchScreen} />
       <Stack.Screen name="AlertScreen" component={AlertScreen} />
       <Stack.Screen name="TextInputScreen" component={TextInputScreen} />
+      <Stack.Screen
+        name="PullToRefreshScreen"
+        component={PullToRefreshScreen}
+      />
     </Stack.Navigator>
   );
 };
