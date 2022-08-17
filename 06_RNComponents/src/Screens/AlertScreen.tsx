@@ -22,10 +22,21 @@ export const AlertScreen = () => {
       },
     );
   };
+  const showPrompt = () => {
+    Alert.prompt(
+      '¿Estas Seguro?',
+      'Mensaje',
+      (value: string) => console.log('Info:', value),
+      'plain-text',
+      'Hola Mundo',
+      'number-pad',
+    );
+  };
   return (
     <View style={styles.globalMargin}>
       <HeaderTitle title="Alert" />
       <Button title="Mostrar Alerta" onPress={showAlert} />
+      <Button title="Mostrar Prompt" onPress={showPrompt} />
     </View>
   );
 };
