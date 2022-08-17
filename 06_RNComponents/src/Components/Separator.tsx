@@ -1,11 +1,8 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-
-export const Separator = () => {
-  return <View style={styles.separator} />;
+import {View} from 'react-native';
+interface Props {
+  height?: number;
+}
+export const Separator = ({height = 10}: Props) => {
+  return <View style={{height}} />;
 };
-const styles = StyleSheet.create({
-  separator: {
-    height: 10,
-  },
-});
