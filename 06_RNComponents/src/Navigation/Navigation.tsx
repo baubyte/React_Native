@@ -8,6 +8,7 @@ import {SwitchScreen} from '../Screens/SwitchScreen';
 import {AlertScreen} from '../Screens/AlertScreen';
 import {TextInputScreen} from '../Screens/TextInputScreen';
 import {PullToRefreshScreen} from '../Screens/PullToRefreshScreen';
+import {CustomSectionListScreen} from '../Screens/CustomSectionListScreen';
 
 const Stack = createStackNavigator<RootStackParams>();
 
@@ -29,6 +30,10 @@ export const Navigation = () => {
       <Stack.Screen
         name="PullToRefreshScreen"
         component={PullToRefreshScreen}
+      />
+      <Stack.Screen
+        name="CustomSectionListScreen"
+        component={CustomSectionListScreen}
       />
     </Stack.Navigator>
   );
