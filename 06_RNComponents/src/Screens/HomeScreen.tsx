@@ -2,13 +2,11 @@ import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {FlatListMenuItem} from '../Components/FlatListMenuItem';
 import {HeaderTitle} from '../Components/HeaderTitle';
+import {ItemSeparator} from '../Components/ItemSeparator';
 import {menuItems} from '../Data/MenuItems';
 import {styles} from '../Theme/appTheme';
 
 export const HomeScreen = () => {
-  const ItemSeparator = () => {
-    return <View style={homeStyles.itemSeparator} />;
-  };
   return (
     <View style={(homeStyles.container, styles.globalMargin)}>
       <FlatList
@@ -16,7 +14,7 @@ export const HomeScreen = () => {
         renderItem={({item}) => <FlatListMenuItem menuItem={item} />}
         keyExtractor={item => item.component}
         ListHeaderComponent={<HeaderTitle title="Opciones de Menú" />}
-        ItemSeparatorComponent={ItemSeparator}
+        ItemSeparatorComponent={() => <ItemSeparator />}
       />
     </View>
   );
