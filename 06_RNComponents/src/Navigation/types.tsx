@@ -3,6 +3,7 @@ export type RootStackParams = {
   Animation101Screen: undefined;
   Animation102Screen: undefined;
   SwitchScreen: undefined;
+  AlertScreen: undefined;
 };
 export type ComponentItem = keyof RootStackParams;
 declare global {
