@@ -9,6 +9,7 @@ import {AlertScreen} from '../Screens/AlertScreen';
 import {TextInputScreen} from '../Screens/TextInputScreen';
 import {PullToRefreshScreen} from '../Screens/PullToRefreshScreen';
 import {CustomSectionListScreen} from '../Screens/CustomSectionListScreen';
+import {ModalScreen} from '../Screens/ModalScreen';
 
 const Stack = createStackNavigator<RootStackParams>();
 
@@ -35,6 +36,7 @@ export const Navigation = () => {
         name="CustomSectionListScreen"
         component={CustomSectionListScreen}
       />
+      <Stack.Screen name="ModalScreen" component={ModalScreen} />
     </Stack.Navigator>
   );
 };

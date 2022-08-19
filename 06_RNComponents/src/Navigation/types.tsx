@@ -7,6 +7,7 @@ export type RootStackParams = {
   TextInputScreen: undefined;
   PullToRefreshScreen: undefined;
   CustomSectionListScreen: undefined;
+  ModalScreen: undefined;
 };
 export type ComponentItem = keyof RootStackParams;
 declare global {
