@@ -9,6 +9,7 @@ export type RootStackParams = {
   CustomSectionListScreen: undefined;
   ModalScreen: undefined;
   InfiniteScrollScreen: undefined;
+  SlidesScreen: undefined;
 };
 export type ComponentItem = keyof RootStackParams;
 declare global {
