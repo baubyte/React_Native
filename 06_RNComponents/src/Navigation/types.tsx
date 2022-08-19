@@ -8,6 +8,7 @@ export type RootStackParams = {
   PullToRefreshScreen: undefined;
   CustomSectionListScreen: undefined;
   ModalScreen: undefined;
+  InfiniteScrollScreen: undefined;
 };
 export type ComponentItem = keyof RootStackParams;
 declare global {
