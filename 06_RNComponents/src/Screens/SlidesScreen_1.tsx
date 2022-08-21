@@ -1,5 +1,4 @@
-import {StackScreenProps} from '@react-navigation/stack';
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {
   Animated,
   Dimensions,
@@ -14,9 +13,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useAnimation} from '../Hooks/useAnimation';
-import {RootStackParams} from '../Navigation/types';
 
-const {width: screenWidth} = Dimensions.get('window');
+const {height: screenHeight, width: screenWidth} = Dimensions.get('window');
 interface Slide {
   title: string;
   desc: string;
@@ -40,11 +38,9 @@ const items: Slide[] = [
     img: require('../assets/slide-3.png'),
   },
 ];
-interface Props extends StackScreenProps<RootStackParams, 'SlidesScreen'> {}
-
-export const SlidesScreen = ({navigation}: Props) => {
+export const SlidesScreen = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const isVisible = useRef(false);
+  const [isVisible, setIsVisible] = useState(false);
   const {opacity, fadeIn} = useAnimation();
   const renderItem = (item: Slide) => {
     return (
@@ -66,7 +62,7 @@ export const SlidesScreen = ({navigation}: Props) => {
         onSnapToItem={index => {
           setActiveIndex(index);
           if (index === 2) {
-            isVisible.current = true;
+            setIsVisible(true);
             fadeIn();
           }
         }}
@@ -78,19 +74,17 @@ export const SlidesScreen = ({navigation}: Props) => {
           activeDotIndex={activeIndex}
           dotStyle={internalStyles.dotStyle}
         />
-        <Animated.View style={{opacity}}>
-          <TouchableOpacity
-            style={internalStyles.buttonEnter}
-            activeOpacity={0.9}
-            onPress={() => {
-              if (isVisible.current) {
-                navigation.navigate('HomeScreen');
-              }
-            }}>
-            <Text style={internalStyles.buttonEnterText}>Entrar</Text>
-            <Icon name="chevron-forward-outline" color="white" size={30} />
-          </TouchableOpacity>
-        </Animated.View>
+        {isVisible && (
+          <Animated.View style={{opacity}}>
+            <TouchableOpacity
+              style={internalStyles.buttonEnter}
+              activeOpacity={0.9}
+              onPress={() => console.log('Click')}>
+              <Text style={internalStyles.buttonEnterText}>Entrar</Text>
+              <Icon name="chevron-forward-outline" color="white" size={30} />
+            </TouchableOpacity>
+          </Animated.View>
+        )}
       </View>
     </SafeAreaView>
   );
