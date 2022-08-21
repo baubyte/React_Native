@@ -1,7 +1,8 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {ThemeContext} from '../Context/themeContext/ThemeContext';
 import {MenuItem} from '../Interfaces/appInterfaces';
 import {Spacer} from './Spacer';
 interface Props {
@@ -10,15 +11,18 @@ interface Props {
 
 export const FlatListMenuItem = ({menuItem}: Props) => {
   const navigation = useNavigation();
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={() => navigation.navigate(menuItem.component)}>
       <View style={styles.container}>
-        <Icon name={menuItem.iconName} color="#5856D6" size={24} />
+        <Icon name={menuItem.iconName} color={colors.primary} size={24} />
         <Text style={styles.itemText}>{menuItem.name}</Text>
         <Spacer />
-        <Icon name="chevron-forward-outline" color="#5856D6" size={24} />
+        <Icon name="chevron-forward-outline" color={colors.primary} size={24} />
       </View>
     </TouchableOpacity>
   );
