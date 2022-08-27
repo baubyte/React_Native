@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {SectionList, StyleSheet, Text, View} from 'react-native';
 import {HeaderTitle} from '../Components/HeaderTitle';
 import {ItemSeparator} from '../Components/ItemSeparator';
+import {ThemeContext} from '../Context/themeContext/ThemeContext';
 import {styles} from '../Theme/appTheme';
 interface Home {
   home: string;
@@ -154,6 +155,9 @@ const homes: Home[] = [
   },
 ];
 export const CustomSectionListScreen = () => {
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
   return (
     <View style={[styles.globalMargin, internalStyles.container]}>
       <SectionList
@@ -165,10 +169,12 @@ export const CustomSectionListScreen = () => {
             <HeaderTitle title={`Total de Casas🧮: ${homes.length}`} />
           </View>
         )}
-        renderItem={({item}) => <Text>{item}</Text>}
+        renderItem={({item}) => (
+          <Text style={{color: colors.text}}>{item}</Text>
+        )}
         stickySectionHeadersEnabled
         renderSectionHeader={({section: {home}}) => (
-          <View style={internalStyles.containerSection}>
+          <View style={{backgroundColor: colors.background}}>
             <HeaderTitle title={home} />
           </View>
         )}
@@ -185,9 +191,6 @@ export const CustomSectionListScreen = () => {
 const internalStyles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  containerSection: {
-    backgroundColor: 'white',
   },
   footerContainer: {
     marginBottom: 60,

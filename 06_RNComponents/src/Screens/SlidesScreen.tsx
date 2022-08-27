@@ -1,5 +1,5 @@
 import {StackScreenProps} from '@react-navigation/stack';
-import React, {useRef, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import {
   Animated,
   Dimensions,
@@ -13,6 +13,7 @@ import {
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {ThemeContext} from '../Context/themeContext/ThemeContext';
 import {useAnimation} from '../Hooks/useAnimation';
 import {RootStackParams} from '../Navigation/types';
 
@@ -43,15 +44,26 @@ const items: Slide[] = [
 interface Props extends StackScreenProps<RootStackParams, 'SlidesScreen'> {}
 
 export const SlidesScreen = ({navigation}: Props) => {
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
   const [activeIndex, setActiveIndex] = useState(0);
   const isVisible = useRef(false);
   const {opacity, fadeIn} = useAnimation();
   const renderItem = (item: Slide) => {
     return (
-      <View style={internalStyles.containerItem}>
+      <View
+        style={{
+          ...internalStyles.containerItem,
+          backgroundColor: colors.background,
+        }}>
         <Image source={item.img} style={internalStyles.image} />
-        <Text style={internalStyles.title}>{item.title}</Text>
-        <Text style={internalStyles.subTitle}>{item.desc}</Text>
+        <Text style={{...internalStyles.title, color: colors.primary}}>
+          {item.title}
+        </Text>
+        <Text style={{...internalStyles.subTitle, color: colors.text}}>
+          {item.desc}
+        </Text>
       </View>
     );
   };
@@ -76,11 +88,17 @@ export const SlidesScreen = ({navigation}: Props) => {
         <Pagination
           dotsLength={items.length}
           activeDotIndex={activeIndex}
-          dotStyle={internalStyles.dotStyle}
+          dotStyle={{
+            ...internalStyles.dotStyle,
+            backgroundColor: colors.primary,
+          }}
         />
         <Animated.View style={{opacity}}>
           <TouchableOpacity
-            style={internalStyles.buttonEnter}
+            style={{
+              ...internalStyles.buttonEnter,
+              backgroundColor: colors.primary,
+            }}
             activeOpacity={0.9}
             onPress={() => {
               if (isVisible.current) {
@@ -102,7 +120,6 @@ const internalStyles = StyleSheet.create({
   },
   containerItem: {
     flex: 1,
-    backgroundColor: 'white',
     borderRadius: 5,
     padding: 40,
     justifyContent: 'center',
@@ -124,7 +141,6 @@ const internalStyles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 10,
-    backgroundColor: '#5856D6',
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -134,7 +150,6 @@ const internalStyles = StyleSheet.create({
   },
   buttonEnter: {
     flexDirection: 'row',
-    backgroundColor: '#5856D6',
     width: 140,
     height: 50,
     justifyContent: 'center',

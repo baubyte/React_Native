@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   StyleSheet,
   TextInput,
@@ -16,8 +16,12 @@ import {styles} from '../Theme/appTheme';
 import {useForm} from '../Hooks/useForm';
 import {Spacer} from '../Components/Spacer';
 import {CustomSwitch} from '../Components/CustomSwitch';
+import {ThemeContext} from '../Context/themeContext/ThemeContext';
 
 export const TextInputScreen = () => {
+  const {
+    theme: {colors, dividerColor},
+  } = useContext(ThemeContext);
   const {form, onChange, isSubscribed} = useForm({
     name: '',
     email: '',
@@ -33,16 +37,26 @@ export const TextInputScreen = () => {
           <View style={styles.globalMargin}>
             <HeaderTitle title="Text Inputs" />
             <TextInput
-              style={internalStyles.input}
+              style={{
+                ...internalStyles.input,
+                color: colors.text,
+                borderColor: dividerColor,
+              }}
               placeholder="Ingrese su Nombre"
+              placeholderTextColor={colors.text}
               autoCorrect={false}
               autoCapitalize="words"
               onChangeText={value => onChange(value, 'name')}
             />
             <Separator />
             <TextInput
-              style={internalStyles.input}
+              style={{
+                ...internalStyles.input,
+                color: colors.text,
+                borderColor: dividerColor,
+              }}
               placeholder="Ingrese su Email"
+              placeholderTextColor={colors.text}
               autoCorrect={false}
               autoCapitalize="none"
               onChangeText={value => onChange(value, 'email')}
@@ -61,8 +75,13 @@ export const TextInputScreen = () => {
             <HeaderTitle title={JSON.stringify(form, null, 3)} />
             <Separator />
             <TextInput
-              style={internalStyles.input}
+              style={{
+                ...internalStyles.input,
+                color: colors.text,
+                borderColor: dividerColor,
+              }}
               placeholder="Ingrese su Teléfono"
+              placeholderTextColor={colors.text}
               onChangeText={value => onChange(value, 'phone')}
               keyboardType="phone-pad"
             />

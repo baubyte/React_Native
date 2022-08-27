@@ -5,25 +5,46 @@ import {ThemeContext} from '../Context/themeContext/ThemeContext';
 import {styles} from '../Theme/appTheme';
 
 export const ChangeThemeScreen = () => {
-  const {setDarkTheme} = useContext(ThemeContext);
+  const {
+    setDarkTheme,
+    setLightTheme,
+    theme: {colors},
+  } = useContext(ThemeContext);
   return (
     <View style={styles.globalMargin}>
       <HeaderTitle title="Cambiar Tema" />
-      <TouchableOpacity
-        onPress={setDarkTheme}
-        activeOpacity={0.8}
-        style={internalStyles.button}>
-        <Text style={internalStyles.buttonText}>Light / Dark</Text>
-      </TouchableOpacity>
+      <View style={internalStyles.buttonContainer}>
+        <TouchableOpacity
+          onPress={setLightTheme}
+          activeOpacity={0.8}
+          style={{
+            ...internalStyles.button,
+            backgroundColor: colors.primary,
+          }}>
+          <Text style={internalStyles.buttonText}>Light</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={setDarkTheme}
+          activeOpacity={0.8}
+          style={{
+            ...internalStyles.button,
+            backgroundColor: colors.primary,
+          }}>
+          <Text style={internalStyles.buttonText}>Dark</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 const internalStyles = StyleSheet.create({
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   button: {
     width: 150,
     height: 50,
     borderRadius: 20,
-    backgroundColor: '#5856D6',
     justifyContent: 'center',
   },
   buttonText: {

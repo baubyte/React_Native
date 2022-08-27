@@ -1,16 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {ThemeContext} from '../Context/themeContext/ThemeContext';
 import {styles} from '../Theme/appTheme';
 interface Props {
   title: string;
-  color?: string;
 }
-export const HeaderTitle = ({title, color = '#5856D6'}: Props) => {
+export const HeaderTitle = ({title}: Props) => {
   const {top} = useSafeAreaInsets();
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
   return (
     <View style={{...internalStyles.headerListContainer, marginTop: top + 20}}>
-      <Text style={{...styles.title, color}}>{title}</Text>
+      <Text style={{...styles.title, color: colors.text}}>{title}</Text>
     </View>
   );
 };

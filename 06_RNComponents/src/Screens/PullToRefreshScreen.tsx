@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {ScrollView, View, RefreshControl} from 'react-native';
 import {HeaderTitle} from '../Components/HeaderTitle';
 import {styles} from '../Theme/appTheme';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {ThemeContext} from '../Context/themeContext/ThemeContext';
 
 export const PullToRefreshScreen = () => {
   const {top: marginTop} = useSafeAreaInsets(); //IOS
@@ -16,6 +17,9 @@ export const PullToRefreshScreen = () => {
       setData('Hola Mundo');
     }, 3500);
   };
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
   return (
     <ScrollView
       // eslint-disable-next-line react-native/no-inline-styles
@@ -25,11 +29,10 @@ export const PullToRefreshScreen = () => {
           refreshing={refreshing}
           onRefresh={onRefresh}
           progressViewOffset={10}
-          progressBackgroundColor="#5856D6"
+          progressBackgroundColor={colors.primary}
           colors={['white', 'red', 'orange']}
-          // eslint-disable-next-line react-native/no-inline-styles
-          style={{backgroundColor: '#5856D6'}} // iOS
-          titleColor="white" // iOS
+          style={{backgroundColor: colors.primary}} // iOS
+          titleColor={colors.text} // iOS
           title="Loading..." // iOS
         />
       }>
