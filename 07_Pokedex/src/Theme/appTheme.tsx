@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: 'bold',
     color: 'black',
+    paddingBottom: 10,
   },
   pokemonImage: {
     width: 100,
