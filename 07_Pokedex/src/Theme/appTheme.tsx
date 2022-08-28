@@ -17,4 +17,11 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
   },
+  pokemonImage: {
+    width: 100,
+    height: 100,
+  },
+  listFooterActivityIndicator: {
+    height: 100,
+  },
 });
