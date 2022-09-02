@@ -1,10 +1,18 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {RootStackParams} from '../Navigation/Types';
 import {FadeInImage} from '../Components/FadeInImage';
+import {usePokemon} from '../Hooks/usePokemon';
 
 interface Props extends StackScreenProps<RootStackParams, 'PokemonScreen'> {}
 
@@ -12,8 +20,9 @@ export const PokemonScreen = ({navigation, route}: Props) => {
   const {simplePokemon, color} = route.params;
   const {id, name, picture} = simplePokemon;
   const {top} = useSafeAreaInsets();
+  const {isLoading, pokemon} = usePokemon(id);
   return (
-    <View>
+    <View style={internalStyles.container}>
       {/* Header Container */}
       <View style={{...internalStyles.headerContainer, backgroundColor: color}}>
         {/* Back Button */}
@@ -35,10 +44,17 @@ export const PokemonScreen = ({navigation, route}: Props) => {
         />
         <FadeInImage uri={picture} style={internalStyles.pokemonImage} />
       </View>
+      {/* Detalle y Loading */}
+      <View style={internalStyles.activityIndicator}>
+        <ActivityIndicator color={color} size={50} />
+      </View>
     </View>
   );
 };
 const internalStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   headerContainer: {
     height: 370,
     zIndex: 999,
@@ -67,5 +83,10 @@ const internalStyles = StyleSheet.create({
     height: 250,
     position: 'absolute',
     bottom: -15,
+  },
+  activityIndicator: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
