@@ -21,7 +21,7 @@ export const PokemonCard = ({pokemon}: Props) => {
   const isMounted = useRef(true);
   const navigation = useNavigation();
   useEffect(() => {
-    async function getImageColors() {
+    const getImageColors = async () => {
       try {
         const colors = await ImageColors.getColors(pokemon.picture, {
           fallback: 'grey',
@@ -45,7 +45,7 @@ export const PokemonCard = ({pokemon}: Props) => {
       return () => {
         return (isMounted.current = false);
       };
-    }
+    };
     getImageColors();
   }, []);
 
