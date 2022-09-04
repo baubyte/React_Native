@@ -101,6 +101,7 @@ const internalStyles = StyleSheet.create({
     elevation: 5,
   },
   name: {
+    textTransform: 'capitalize',
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',

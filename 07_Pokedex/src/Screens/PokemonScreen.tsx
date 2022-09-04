@@ -72,6 +72,7 @@ const internalStyles = StyleSheet.create({
     left: 20,
   },
   pokemonName: {
+    textTransform: 'capitalize',
     color: 'white',
     fontSize: 40,
     alignSelf: 'flex-start',

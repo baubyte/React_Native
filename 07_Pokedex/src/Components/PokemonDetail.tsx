@@ -137,6 +137,7 @@ const internalStyles = StyleSheet.create({
     flexDirection: 'row',
   },
   regularText: {
+    textTransform: 'capitalize',
     fontSize: 18,
     color: 'black',
   },
@@ -145,7 +146,7 @@ const internalStyles = StyleSheet.create({
     height: 100,
   },
   finalSprite: {
-    marginBottom: 20,
+    marginBottom: 60,
     alignItems: 'center',
   },
 });
