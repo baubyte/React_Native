@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Dimensions,
   FlatList,
@@ -12,6 +12,7 @@ import {Loading} from '../Components/Loading';
 import {PokemonCard} from '../Components/PokemonCard';
 import {SearchInput} from '../Components/SearchInput';
 import {usePokemonSearch} from '../Hooks/usePokemonSearch';
+import {SimplePokemon} from '../Interfaces/pokemonInterfaces';
 import {styles} from '../Theme/appTheme';
 
 const screenWidth = Dimensions.get('window').width;
@@ -19,6 +20,28 @@ const screenWidth = Dimensions.get('window').width;
 export const SearchScreen = () => {
   const {top} = useSafeAreaInsets();
   const {isFetching, simplePokemonList} = usePokemonSearch();
+  const [term, setTerm] = useState('');
+  const [pokemonFiltered, setPokemonFiltered] = useState<SimplePokemon[]>([]);
+
+  useEffect(() => {
+    if (term.length === 0) {
+      //Vaciamos la lista
+      return setPokemonFiltered([]);
+    }
+    if (isNaN(Number(term))) {
+      //Aplicar filtro por nombre
+      setPokemonFiltered(
+        simplePokemonList.filter(pokemon =>
+          pokemon.name.toLocaleLowerCase().includes(term.toLocaleLowerCase()),
+        ),
+      );
+    } else {
+      const pokemonById = simplePokemonList.find(
+        pokemon => pokemon.id === term,
+      );
+      setPokemonFiltered(pokemonById ? [pokemonById] : []);
+    }
+  }, [term]);
 
   if (isFetching) {
     return <Loading />;
@@ -26,13 +49,14 @@ export const SearchScreen = () => {
   return (
     <View style={internalStyles.container}>
       <SearchInput
+        onDebounce={value => setTerm(value)}
         style={{
           ...internalStyles.searchInput,
           top: Platform.OS === 'ios' ? top : top + 20,
         }}
       />
       <FlatList
-        data={simplePokemonList}
+        data={pokemonFiltered}
         keyExtractor={pokemon => pokemon.id}
         showsVerticalScrollIndicator={false}
         numColumns={2}
@@ -44,7 +68,7 @@ export const SearchScreen = () => {
               ...styles.globalMargin,
               marginTop: Platform.OS === 'ios' ? top + 60 : top + 60,
             }}>
-            Pokedex
+            {term}
           </Text>
         }
         renderItem={({item}) => <PokemonCard pokemon={item} />}

@@ -39,7 +39,7 @@ export const PokemonCard = ({pokemon}: Props) => {
             break;
         }
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
       //Cuando se desmonta el componente se dispara
       return () => {
