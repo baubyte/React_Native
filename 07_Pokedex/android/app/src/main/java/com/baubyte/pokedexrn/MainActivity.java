@@ -1,4 +1,6 @@
-package com.pokedex;
+//package com.pokedex;
+package com.baubyte.pokedexrn;
+
 import android.os.Bundle; // here
 import com.facebook.react.ReactActivity;
 // react-native-splash-screen >= 0.3.1

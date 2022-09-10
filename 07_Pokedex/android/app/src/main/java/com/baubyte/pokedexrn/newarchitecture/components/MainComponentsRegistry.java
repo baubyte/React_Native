@@ -1,4 +1,5 @@
-package com.pokedex.newarchitecture.components;
+//package com.pokedex.newarchitecture.components;
+package com.baubyte.pokedexrn.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

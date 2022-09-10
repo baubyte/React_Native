@@ -1,4 +1,5 @@
-package com.pokedex.newarchitecture.modules;
+//package com.pokedex.newarchitecture.modules;
+package com.baubyte.pokedexrn.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;
