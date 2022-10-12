@@ -1,7 +1,9 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import {useLocation} from '../Hooks/useLocation';
 import {LoadingScreen} from '../Screens/LoadingScreen';
+import {Fab} from './Fab';
 
 interface Props {
   markers?: typeof Marker[];
@@ -30,6 +32,18 @@ export const Map = ({markers}: Props) => {
           description="Descripción Marker"
         /> */}
       </MapView>
+      <Fab
+        iconName="star-outline" 
+        onPress={() => console.log('Start Outline')}
+        style={internalStyles.fab}
+      />
     </>
   );
 };
+const internalStyles = StyleSheet.create({
+  fab: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+  },
+});
