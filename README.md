@@ -6,3 +6,6 @@
   - [App Navegacion](./04_NavigationApp/)
   - [App Peliculas](./05_MoviesApp/)
   - [Componentes React Native](./06_RNComponents/)
+  - [Pokedex](./07_Pokedex/)
+  - [App de Rutas](./08_RutasApp/)
+  - [Backend Sección 9](./09_Backend_Cafe/)
