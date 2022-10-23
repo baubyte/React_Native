@@ -18,7 +18,7 @@ import {RootStackParams} from '../Navigation/Navigation';
 interface Props extends StackScreenProps<RootStackParams, 'LoginScreen'> {}
 
 export const LoginScreen = ({navigation}: Props) => {
-  const {email, password, form, onChange} = useForm({
+  const {email, password, onChange} = useForm({
     email: '',
     password: '',
   });
@@ -77,7 +77,7 @@ export const LoginScreen = ({navigation}: Props) => {
               activeOpacity={0.7}
               style={loginStyles.button}
               onPress={onLogin}>
-              <Text style={loginStyles.buttonText}>Login</Text>
+              <Text style={loginStyles.buttonText}>Ingresar</Text>
             </TouchableOpacity>
           </View>
           {/* Crear Nueva Cuenta */}
