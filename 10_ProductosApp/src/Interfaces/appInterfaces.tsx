@@ -14,3 +14,4 @@ export interface Usuario {
   uid: string;
   img?: string;
 }
+export type StatusAuth = 'checking' | 'authenticated' | 'notAuthenticated';
