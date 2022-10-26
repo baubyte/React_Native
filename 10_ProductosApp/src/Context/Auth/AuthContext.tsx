@@ -1,9 +1,10 @@
-import React, {createContext} from 'react';
+import React, {createContext, useReducer} from 'react';
 import {StatusAuth, Usuario} from '../../Interfaces/appInterfaces';
+import {authReducer, AuthState} from './authReducer';
 
 type AuthContextProps = {
   errorMessage: string;
-  toke: string | null;
+  token: string | null;
   user: Usuario | null;
   //status: 'checking' | 'authenticated' | 'not-authenticated';
   status: StatusAuth;
@@ -12,6 +13,12 @@ type AuthContextProps = {
   logout: () => void;
   removeError: () => void;
 };
+const authInitialState: AuthState = {
+  status: 'checking',
+  token: null,
+  user: null,
+  errorMessage: '',
+};
 export const AuthContext = createContext({} as AuthContextProps);
 
 export const AuthProvider = ({
@@ -19,7 +26,23 @@ export const AuthProvider = ({
 }: {
   children: JSX.Element[] | JSX.Element;
 }) => {
-  return <AuthContext.Provider value={{
-     
-  }}>{children}</AuthContext.Provider>;
+  const [state, dispatch] = useReducer(authReducer, authInitialState);
+
+  const signUp = () => {};
+  const signIn = () => {};
+  const logout = () => {};
+  const removeError = () => {};
+
+  return (
+    <AuthContext.Provider
+      value={{
+        ...state,
+        signUp,
+        signIn,
+        logout,
+        removeError,
+      }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
