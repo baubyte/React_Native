@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, {useContext, useEffect} from 'react';
 import {
   Alert,
   Keyboard,
@@ -26,7 +26,6 @@ export const RegisterScreen = ({navigation}: Props) => {
     password: '',
   });
   const onRegister = () => {
-    console.log({name, email, password});
     Keyboard.dismiss();
     signUp({nombre: name, correo: email, password});
   };
