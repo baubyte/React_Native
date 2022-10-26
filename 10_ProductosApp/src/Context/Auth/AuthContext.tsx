@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   LoginData,
   LoginResponse,
+  RegisterData,
   StatusAuth,
   Usuario,
 } from '../../Interfaces/appInterfaces';
@@ -15,7 +16,7 @@ type AuthContextProps = {
   user: Usuario | null;
   //status: 'checking' | 'authenticated' | 'not-authenticated';
   status: StatusAuth;
-  signUp: () => void;
+  signUp: (registerData: RegisterData) => void;
   signIn: (loginData: LoginData) => void;
   logout: () => void;
   removeError: () => void;
@@ -75,7 +76,25 @@ export const AuthProvider = ({
       });
     }
   };
-  const signUp = () => {};
+  const signUp = async ({nombre,correo, password}: RegisterData) => {
+    try {
+      const {
+        data: {token, usuario},
+      } = await cafeApi.post<LoginResponse>('/usuarios', {
+        nombre,
+        correo,
+        password,
+      });
+      dispatch({type: 'signUp', payload: {token, user: usuario}});
+      await AsyncStorage.setItem('token', token);
+    } catch (error) {
+      const messages = error.response.data.errors.map(error => error.msg);
+      dispatch({
+        type: 'addError',
+        payload: messages.join(', ') || 'Revise la información',
+      });
+    }
+  };
   const logout = async () => {
     await AsyncStorage.removeItem('token');
     dispatch({type: 'logout'});
