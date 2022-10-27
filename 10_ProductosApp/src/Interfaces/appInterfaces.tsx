@@ -37,11 +37,15 @@ export interface Producto {
   _id: string;
   nombre: string;
   categoria: Categoria;
-  usuario: Categoria;
+  usuario: Usuario;
   img?: string;
 }
 
 export interface Categoria {
+  _id: string;
+  nombre: string;
+}
+export interface Usuario {
   _id: string;
   nombre: string;
 }
