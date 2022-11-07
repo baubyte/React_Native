@@ -1,5 +1,5 @@
 import {StackScreenProps} from '@react-navigation/stack';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   Button,
   ScrollView,
@@ -12,24 +12,56 @@ import {Picker} from '@react-native-picker/picker';
 import {Spacer} from '../Components/Spacer';
 import {ProductsStackParams} from '../Navigation/ProductsNavigation';
 import {useCategories} from '../Hooks/useCategories';
+import {useForm} from '../Hooks/useForm';
+import {ProductContext} from '../Context/Product/ProductContext';
 
 interface Props
   extends StackScreenProps<ProductsStackParams, 'ProductScreen'> {}
 
 export const ProductScreen = ({navigation, route}: Props) => {
-  const {id, name = ''} = route.params;
+  const {id = '', name = ''} = route.params;
   const {categories} = useCategories();
+  const {loadProductById} = useContext(ProductContext);
+  const {_id, categoriaId, nombre, img, form, onChange, setFormValue} = useForm(
+    {
+      _id: id,
+      categoriaId: '',
+      nombre: name,
+      img: '',
+    },
+  );
   const [selectedLanguage, setSelectedLanguage] = useState();
   useEffect(() => {
     navigation.setOptions({
       title: name ? name : 'Nuevo Producto',
     });
   }, []);
+  useEffect(() => {
+    loadProduct();
+  }, []);
+
+  const loadProduct = async () => {
+    if (id.length === 0) {
+      return;
+    }
+    const product = await loadProductById(id);
+    setFormValue({
+      _id: _id,
+      categoriaId: product.categoria._id,
+      img: product.img || '',
+      nombre,
+    });
+  };
   return (
     <View style={internalStyles.container}>
       <ScrollView>
         <Text style={internalStyles.label}>Nombre del Producto: </Text>
-        <TextInput placeholder="Producto" style={internalStyles.textInput} />
+        <TextInput
+          placeholder="Producto"
+          style={internalStyles.textInput}
+          value={nombre}
+          onChange={value => onChange(value, 'nombre')}
+        />
         {/**Picker / Selector */}
         <Text style={internalStyles.label}>Categoria: </Text>
         <Picker
@@ -51,6 +83,7 @@ export const ProductScreen = ({navigation, route}: Props) => {
           <Spacer />
           <Button title="Galería" onPress={() => {}} color="#5856D6" />
         </View>
+        <Text>{JSON.stringify(form, null, 5)}</Text>
       </ScrollView>
     </View>
   );

@@ -41,8 +41,9 @@ export const ProductProvider = ({children}: ChildrenComponent) => {
     productId: string,
   ) => {};
   const deleteProduct = async (productId: string) => {};
-  const loadProductById = async (productId: string) => {
-    throw new Error('Not Implemented');
+  const loadProductById = async (productId: string): Promise<Producto> => {
+    const response = await cafeApi.get<Producto>(`productos/${productId}`);
+    return response.data;
   };
   const uploadImage = async (data: any, productId: string) => {};
   return (
