@@ -1,5 +1,12 @@
-import React, {useContext, useEffect} from 'react';
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useContext, useEffect, useState} from 'react';
+import {
+  FlatList,
+  RefreshControl,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {ItemSeparator} from '../Components/ItemSeparator';
 import {ProductContext} from '../Context/Product/ProductContext';
 import {StackScreenProps} from '@react-navigation/stack';
@@ -10,6 +17,7 @@ interface Props
 
 export const ProductsScreen = ({navigation}: Props) => {
   const {products, loadProducts} = useContext(ProductContext);
+  const [refreshing, setRefreshing] = useState(false);
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -22,11 +30,26 @@ export const ProductsScreen = ({navigation}: Props) => {
       ),
     });
   }, []);
-
+  const loadProductsFromBackend = async () => {
+    setRefreshing(true);
+    await loadProducts();
+    setRefreshing(false);
+  };
   //TODO: Pull to refresh
   return (
     <View style={internalStyles.container}>
       <FlatList
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={loadProductsFromBackend}
+            progressViewOffset={10}
+            progressBackgroundColor="white"
+            style={{backgroundColor: 'black'}} // iOS
+            titleColor="black" // iOS
+            title="Loading..." // iOS
+          />
+        }
         data={products}
         keyExtractor={product => product._id}
         renderItem={({item}) => (
