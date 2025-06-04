@@ -9,3 +9,6 @@ const styles = StyleSheet.create({
     width: 10,
   },
 });
+const styles = StyleSheet.create({
+    
+});
