@@ -27,4 +27,10 @@ export const globalStyles = StyleSheet.create({
     color: globalColors.background,
     fontSize: 18,
   },
+  title : {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: globalColors.dark,
+    marginBottom: 10,
+  },
 });
