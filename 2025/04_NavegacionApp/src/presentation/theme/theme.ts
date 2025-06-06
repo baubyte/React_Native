@@ -33,4 +33,9 @@ export const globalStyles = StyleSheet.create({
     color: globalColors.dark,
     marginBottom: 10,
   },
+  subtitle: {
+    fontSize: 20,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
 });
