@@ -1,6 +1,6 @@
 import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import { StackNavigator } from './StackNavigator';
-import { ProfileScreen } from '../profile/ProfileScreen';
+import { ProfileScreen } from '../screen/profile/ProfileScreen';
 import {globalColors } from '../theme/theme';
 import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
