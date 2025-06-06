@@ -8,6 +8,7 @@ export const globalColors = {
   danger: '#e71d36',
   dark: '#22223b',
   background: '#fff',
+  white: '#ffffff',
 };
 export const globalStyles = StyleSheet.create({
   container: {

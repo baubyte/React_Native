@@ -1,6 +1,8 @@
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import { StackNavigator } from './StackNavigator';
 import { ProfileScreen } from '../profile/ProfileScreen';
+import {globalColors } from '../theme/theme';
+import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 type RootDrawerParams = {
     StackNavigator: undefined;
@@ -9,10 +11,46 @@ type RootDrawerParams = {
 const Drawer = createDrawerNavigator<RootDrawerParams>();
 
 export const SideMenuNavigator = () => {
+    const dimensions = useWindowDimensions();
     return (
-        <Drawer.Navigator>
+        <Drawer.Navigator
+            drawerContent={CustomDrawerContent}
+            screenOptions={{
+                headerShown: false,
+                drawerType: dimensions.width >= 700 ? 'permanent' : 'slide',
+                drawerActiveBackgroundColor: globalColors.primary,
+                drawerActiveTintColor: globalColors.white,
+                drawerInactiveTintColor: globalColors.primary,
+                drawerItemStyle: {
+                    paddingHorizontal: 20,
+                    borderRadius: 100,
+                },
+                drawerStyle: {
+                    width: 250,
+                },
+            }}
+        >
             <Drawer.Screen name="StackNavigator" component={StackNavigator} />
             <Drawer.Screen name="Profile" component={ProfileScreen} />
         </Drawer.Navigator>
     );
 };
+const CustomDrawerContent = (props: DrawerContentComponentProps) => {
+    return (
+        <DrawerContentScrollView {...props}>
+            <View
+                style={styles.drawerHeader}
+            />
+        <DrawerItemList {...props} />
+        <Text>Custom Drawer Content</Text>
+        </DrawerContentScrollView>
+    );
+};
+const styles = StyleSheet.create({
+    drawerHeader: {
+        height: 200,
+        backgroundColor: globalColors.primary,
+        margin: 30,
+        borderRadius: 50,
+    },
+});
