@@ -7,7 +7,7 @@ interface Props {
   onLongPress?: () => void;
 }
 
-dd
+
 export const PrimaryButton = ({ label, onPress, onLongPress }:Props) => {
 
 return (
