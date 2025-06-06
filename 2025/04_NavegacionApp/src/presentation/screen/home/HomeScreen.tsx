@@ -22,6 +22,7 @@ export const HomeScreen = () => {
     navigation.setOptions({
       headerLeft: renderHeaderLeft,
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <View style={globalStyles.container}>
