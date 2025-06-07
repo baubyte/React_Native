@@ -9,7 +9,7 @@ const Tab = createBottomTabNavigator();
 
 const createTabIcon = (label: string, color: string) => <Text style={{ color }}>{label}</Text>;
 
-export const BottomTabNavigator = () =>{
+export const BottomTabsNavigator = () =>{
     return (
         <Tab.Navigator
             screenOptions={{
