@@ -9,6 +9,6 @@ export const App = () => {
     <NavigationContainer>
       {/* <StackNavigator /> */}
       <SideMenuNavigator />
-    </NavigationContainer>
+      </NavigationContainer>
   );
 };
