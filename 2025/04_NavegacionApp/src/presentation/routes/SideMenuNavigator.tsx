@@ -1,9 +1,10 @@
 import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
-import { StackNavigator } from './StackNavigator';
+//import { StackNavigator } from './StackNavigator';
 import { ProfileScreen } from '../screen/profile/ProfileScreen';
-import {globalColors } from '../theme/theme';
+import { globalColors } from '../theme/theme';
 import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { BottomTabsNavigator } from './BottomTabsNavigator';
+import { IonIcon } from '../components/shared/IonIcon';
 
 type RootDrawerParams = {
     StackNavigator: undefined;
@@ -11,6 +12,9 @@ type RootDrawerParams = {
     Tabs: undefined;
 };
 const Drawer = createDrawerNavigator<RootDrawerParams>();
+
+const BonfireDrawerIcon = ({ color }: { color: string }) => <IonIcon name="bonfire-outline" color={color} />;
+const PersonCircleDrawerIcon = ({ color }: { color: string }) => <IonIcon name="person-circle-outline" color={color} />;
 
 export const SideMenuNavigator = () => {
     const dimensions = useWindowDimensions();
@@ -32,9 +36,9 @@ export const SideMenuNavigator = () => {
                 },
             }}
         >
-            <Drawer.Screen name="StackNavigator" component={StackNavigator} />
-            <Drawer.Screen name="Tabs" component={BottomTabsNavigator} />
-            <Drawer.Screen name="Profile" component={ProfileScreen} />
+            {/* <Drawer.Screen name="StackNavigator" component={StackNavigator} /> */}
+            <Drawer.Screen options={{ drawerIcon: BonfireDrawerIcon }} name="Tabs" component={BottomTabsNavigator} />
+            <Drawer.Screen options={{ drawerIcon: PersonCircleDrawerIcon }} name="Profile" component={ProfileScreen} />
         </Drawer.Navigator>
     );
 };
@@ -44,8 +48,8 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
             <View
                 style={styles.drawerHeader}
             />
-        <DrawerItemList {...props} />
-        <Text>Custom Drawer Content</Text>
+            <DrawerItemList {...props} />
+            <Text>Custom Drawer Content</Text>
         </DrawerContentScrollView>
     );
 };

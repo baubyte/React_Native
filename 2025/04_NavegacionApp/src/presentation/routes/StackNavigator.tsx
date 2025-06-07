@@ -16,14 +16,11 @@ const Stack = createStackNavigator<RootStackParams>();
 
 export const StackNavigator = () => {
     const navigator = useNavigation();
-
     useEffect(() => {
         navigator.setOptions({
             headerShown: false,
-        })
-
-
-    }, [])
+        });
+    }, []);
     return (
         <Stack.Navigator screenOptions={{
             headerShown: true,
